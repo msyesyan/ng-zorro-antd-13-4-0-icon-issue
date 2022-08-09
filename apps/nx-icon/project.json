@@ -1,0 +1,100 @@
+{
+  "projectType": "application",
+  "root": "apps/nx-icon",
+  "sourceRoot": "apps/nx-icon/src",
+  "prefix": "nx-icon",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/nx-icon",
+        "index": "apps/nx-icon/src/index.html",
+        "main": "apps/nx-icon/src/main.ts",
+        "polyfills": "apps/nx-icon/src/polyfills.ts",
+        "tsConfig": "apps/nx-icon/tsconfig.app.json",
+        "assets": [
+          "apps/nx-icon/src/favicon.ico",
+          "apps/nx-icon/src/assets"
+        ],
+        "styles": [
+          "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+          "apps/nx-icon/src/styles.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/nx-icon/src/environments/environment.ts",
+              "with": "apps/nx-icon/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "nx-icon:build:production"
+        },
+        "development": {
+          "browserTarget": "nx-icon:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "nx-icon:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/nx-icon/src/**/*.ts",
+          "apps/nx-icon/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/apps/nx-icon"
+      ],
+      "options": {
+        "jestConfig": "apps/nx-icon/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
